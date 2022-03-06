@@ -6,7 +6,7 @@ const conexion = require("./databases/db");
 const bodyParser = require('body-parser');
 const app = express();
 
-const PORT = process.env.PORT || 3050;
+const PORT = process.env.PORT;
 //Set Motor de Plantillas
 app.set('view engine', 'ejs');
 
@@ -52,7 +52,7 @@ app.use(function(req, res, next){
     next();
 });
 
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log('SERVER UP running in http://localhost:3000');
 }
 )
