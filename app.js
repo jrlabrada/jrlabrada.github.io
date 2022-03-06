@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const { json } = require('express/lib/response');
 const cookparser = require('cookie-parser');
 const conexion = require("./databases/db");
-const bodyParser = require('body-parser');
+ 
 const app = express();
 
 const PORT = process.env.PORT;
@@ -17,7 +17,7 @@ app.use(express.static('public'));
 //Para Procesar datos enviados desde Forms
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(bodyParser.json())
+ 
 
 //Set Variables de Entorno
 dotenv.config({path:'/env/.env}'});
