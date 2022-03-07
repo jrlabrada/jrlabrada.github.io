@@ -2,7 +2,7 @@ const { Router } = require('express')
 const express = require('express')
 const router =  express.Router()
 
-const conexion = require('../databases/db')
+const pool = require('../databases/db')
 
 const authController = require('../controllers/authController')
 
@@ -10,7 +10,7 @@ const authController = require('../controllers/authController')
 
 router.get('/', authController.isAuthenticated, (req, res)=>{
     
-    conexion.query('SELECT * FROM entradas_act', (error, results)=>{
+    pool.query('SELECT * FROM entradas_act', (error, results)=>{
         if(error){
             throw error;
         }else{
@@ -31,7 +31,7 @@ router.get('/create', (req, res)=>{
 //RUTA PARA EDITAR REGISTROS
 router.get('/edit/:id', (req, res)=>{
     const id = req.params.id;
-    conexion.query('SELECT * FROM entradas_act WHERE id=?', [id], (error, results)=>{
+    pool.query('SELECT * FROM entradas_act WHERE id=?', [id], (error, results)=>{
         if(error){
             throw error;
         }else{
@@ -44,7 +44,7 @@ router.get('/edit/:id', (req, res)=>{
 //Modificar Productos
 router.get('/modificar/:id', (req, res)=>{
     const id = req.params.id;
-    conexion.query('SELECT * FROM entradas_act WHERE id=?', [id], (error, results)=>{
+    pool.query('SELECT * FROM entradas_act WHERE id=?', [id], (error, results)=>{
         if(error){
             throw error;
         }else{
@@ -58,13 +58,13 @@ router.get('/modificar/:id', (req, res)=>{
 //Despachar Productos
 router.get('/despacho/:id', (req, res)=>{
     const id = req.params.id;
-    conexion.query('SELECT * FROM entradas_act WHERE id=?', [id], (error, results)=>{
+    pool.query('SELECT * FROM entradas_act WHERE id=?', [id], (error, results)=>{
         if(error){
             throw error;
         }else{
             res.render('despacho', {valor:results[0]});
         }
-
+         
     })    
 
 })
@@ -72,13 +72,13 @@ router.get('/despacho/:id', (req, res)=>{
 
 router.get('/delete/:id', (req, res)=>{
     const id = req.params.id;
-    conexion.query('DELETE FROM entradas_act WHERE id=?', [id], (error, results)=>{
+    pool.query('DELETE FROM entradas_act WHERE id=?', [id], (error, results)=>{
         if(error){
             throw error;
         }else{
             res.redirect('/stock');
         }
-
+        
     })    
 
 })
@@ -87,7 +87,7 @@ router.get('/delete/:id', (req, res)=>{
 router.get('/stock', (req, res)=>{
     
          
-    conexion.query('SELECT * FROM entradas_act', (error, results)=>{
+    pool.query('SELECT * FROM entradas_act', (error, results)=>{
         
           if(error){
               throw error;
@@ -96,14 +96,14 @@ router.get('/stock', (req, res)=>{
                
             
           } 
-  
+          
       })       
   });
 //Salidas
 router.get('/salidas', (req, res)=>{
     
          
-    conexion.query('SELECT * FROM salidas_act', (error, results)=>{
+    pool.query('SELECT * FROM salidas_act', (error, results)=>{
         
           if(error){
               throw error;
@@ -112,7 +112,7 @@ router.get('/salidas', (req, res)=>{
                
             
           } 
-  
+          
       })       
   });
  
@@ -128,7 +128,7 @@ router.get
 router.get('/graficoarticulos', (req, res)=>{
  
       
-    conexion.query('SELECT `producto`,`cajas` FROM `salidas_act` WHERE id=?',[38], (error, results)=>{
+    pool.query('SELECT `producto`,`cajas` FROM `salidas_act` WHERE id=?',[38], (error, results)=>{
         
         if(error){
             throw error;
@@ -138,7 +138,7 @@ router.get('/graficoarticulos', (req, res)=>{
              
           
         } 
-
+         
     })       
     })      
 

@@ -1,4 +1,4 @@
-const conexion = require ('../databases/db')
+const pool = require ('../databases/db')
 
 exports.save = (req, res)=>{
     const date = req.body.date;
@@ -15,13 +15,14 @@ exports.save = (req, res)=>{
 
     
 
-    conexion.query('INSERT INTO entradas_act SET ?',{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kxCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, (error, results)=>{
+    pool.query('INSERT INTO entradas_act SET ?',{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kxCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, (error, results)=>{
     if(error){
         console.log(error);
     }else{
          
         res.redirect('/');
-    }    
+    } 
+    pool.query()   
     }) 
 
 }
@@ -42,13 +43,14 @@ exports.modificar = (req, res)=>{
     
      
 
-    conexion.query('UPDATE entradas_act SET ? WHERE id = ?', [{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, id], (error, results)=>{
+    pool.query('UPDATE entradas_act SET ? WHERE id = ?', [{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, id], (error, results)=>{
         if(error){
             throw error;
         }else{
             
             res.redirect('/stock');
         } 
+         
     } )
 
 }
@@ -71,7 +73,7 @@ exports.despacho = (req, res)=>{
     var cadena
     var cadenaJson
     var KxCajasActualizar
-    conexion.query('SELECT cajas FROM entradas_act WHERE id=?', [id], (err, rows)=>{
+    pool.query('SELECT cajas FROM entradas_act WHERE id=?', [id], (err, rows)=>{
        
 
            
@@ -84,11 +86,11 @@ exports.despacho = (req, res)=>{
               
               
       if (refe > 0 ) {
-        conexion.query('UPDATE entradas_act SET ? WHERE id = ?', [{cajas:refe, kilos_cajas:KxCajasActualizar, kilos_totales:Ktotales}, id], (error, results)=>{
+        pool.query('UPDATE entradas_act SET ? WHERE id = ?', [{cajas:refe, kilos_cajas:KxCajasActualizar, kilos_totales:Ktotales}, id], (error, results)=>{
             if(error){
                 throw error;
             }  
-      conexion.query('INSERT INTO salidas_act SET ?',{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kxCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, (error, results)=>{
+            pool.query('INSERT INTO salidas_act SET ?',{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kxCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, (error, results)=>{
             if(error){
                 throw error;
             }else{
@@ -104,11 +106,11 @@ exports.despacho = (req, res)=>{
 
     if (refe==0)
     {
-     conexion.query('INSERT INTO salidas_act SET ?',{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kxCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, (error, results)=>{
+        pool.query('INSERT INTO salidas_act SET ?',{fecha_entrada:date, codigo:codigo, producto:producto, almacen:almacen, cajas:Ccajas, kilos_cajas:kxCajas, kilos_totales:Ktotales , glaseo:glaseo, lote:lote, cliente:cliente, no_palet:Npalet}, (error, results)=>{
          if(error){
              throw error;
          }else{
-            conexion.query('DELETE FROM entradas_act WHERE id=?', [id], (error, results)=>{
+            pool.query('DELETE FROM entradas_act WHERE id=?', [id], (error, results)=>{
                 if(error){
                     throw error;
                 }else{
@@ -121,7 +123,6 @@ exports.despacho = (req, res)=>{
    }
   
     
-
     
 })
 }

@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const { json } = require('express/lib/response');
 const cookparser = require('cookie-parser');
 const conexion = require("./databases/db");
+const Pool = require("mysql/lib/Pool");
+const pool = require("./databases/db");
 
 const app = express();
 const PORT = process.env.PORT||3000
@@ -29,7 +31,7 @@ app.get('/', (req,res)=>{
 })
 
 app.get('/api/entradas_act', (req, res)=>{
-    conexion.query('SELECT * FROM entradas_act', (error, filas)=>{
+    pool.query('SELECT * FROM entradas_act', (error, filas)=>{
         
         if(error){
             throw error;
@@ -38,7 +40,7 @@ app.get('/api/entradas_act', (req, res)=>{
              
           
         } 
-
+         
     })       
 })
  

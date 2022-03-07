@@ -1,12 +1,25 @@
 const mysql = require('mysql')
 
-const conexion = mysql.createConnection({
+var pool  = mysql.createPool({
+    connectionLimit : 10,
+    host            : 'us-cdbr-east-05.cleardb.net',
+    user            : 'b49f461dc92e98',
+    password        : 'a73a5e2f',
+    database        : 'heroku_93dd851c0deb5df'
+  });
+
+
+
+
+
+/* const conexion = mysql.createConnection({
     host : 'us-cdbr-east-05.cleardb.net',
     user : 'b49f461dc92e98',
     password : 'a73a5e2f',
     database : 'heroku_93dd851c0deb5df'
 }) 
-
+ */
+ 
 /* const conexion = mysql.createConnection({
     host : process.env.DB_HOST,
     user : 'root',
@@ -14,12 +27,12 @@ const conexion = mysql.createConnection({
     database : 'stock_congelados_la_navieraa'
 }) */
 
-conexion.connect((error)=>{
+pool.getConnection((error)=>{
     if(error){
         console.log('El error de conexion es: ' + error)
         return
     }
     console.log('!Conectado a la Base de Datos MySql')
 })
-
-module.exports=conexion
+ 
+module.exports=pool
