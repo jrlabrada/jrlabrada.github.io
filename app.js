@@ -43,13 +43,9 @@ app.get('/api/entradas_act', (req, res)=>{
 })
  
 
-app.use(function(req, res, next){
-    if (!req.user)
-    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    next();
-});
+
 
 app.listen(PORT, ()=>{
-    console.log('SERVER UP running');
+    console.log('SERVER UP running', PORT);
 }
 )
