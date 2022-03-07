@@ -5,7 +5,14 @@ const conexion = mysql.createConnection({
     user : 'b49f461dc92e98',
     password : 'a73a5e2f',
     database : 'heroku_93dd851c0deb5df'
-})
+}) 
+
+/* const conexion = mysql.createConnection({
+    host : process.env.DB_HOST,
+    user : 'root',
+    password : process.env.DB_PASS,
+    database : 'stock_congelados_la_navieraa'
+}) */
 
 conexion.connect((error)=>{
     if(error){

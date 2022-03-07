@@ -5,7 +5,7 @@ const cookparser = require('cookie-parser');
 const conexion = require("./databases/db");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||3000
 //Set Motor de Plantillas
 app.set('view engine', 'ejs');
 
