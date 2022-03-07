@@ -194,7 +194,7 @@
   var chart = am4core.create("chartdiv", am4charts.PieChart);
   
   // Add data
-  let url ='http://localhost:3000/api/entradas_act';
+  let url ='https://node-control-stock.herokuapp.com/api/entradas_act';
 fetch(url)
     .then(Response => Response.json())
     .then(datos => mostrar(datos))
