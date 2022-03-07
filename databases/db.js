@@ -7,9 +7,6 @@ const conexion = mysql.createConnection({
     database : 'heroku_93dd851c0deb5df',
 })
 
-// :@/?reconnect=true
-
-
 conexion.connect((error)=>{
     if(error){
         console.log('El error de conexion es: ' + error)
