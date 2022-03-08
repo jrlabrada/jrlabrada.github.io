@@ -135,7 +135,7 @@ router.get('/salidas', (req, res)=>{
  
 
 
-router.get
+ 
 
 
 
@@ -174,7 +174,6 @@ const cruid = require ('../controllers/cruid');
 
 router.post('/save', cruid.save);
 router.post('/modificar', cruid.modificar);
- 
 router.post('/despacho', cruid.despacho);
  
  
