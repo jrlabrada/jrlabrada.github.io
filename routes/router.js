@@ -96,7 +96,38 @@ router.get('/deleteSalidas/:id', (req, res)=>{
 
 })
 
+//Stock Mercancías Bergondo
+router.get('/bergondo', (req, res)=>{
+     const almacen = 'Bergondo'
+    pool.query('SELECT * FROM `entradas_act` WHERE almacen = ?',[almacen], (error, results)=>{
+        
+        if(error){
+            throw error;
+        }else{
+             res.render('stock', {results:results});
+             
+          
+        } 
+        
+    })     
 
+})
+//Stock Mercancías Coruñesa
+router.get('/corunesa', (req, res)=>{
+    const almacen = 'La Coruñesa'
+   pool.query('SELECT * FROM `entradas_act` WHERE almacen = ?',[almacen], (error, results)=>{
+       
+       if(error){
+           throw error;
+       }else{
+            res.render('stock', {results:results});
+            
+         
+       } 
+       
+   })     
+
+})
 //Stock Actual
 router.get('/stock', (req, res)=>{
     
