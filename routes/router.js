@@ -82,6 +82,20 @@ router.get('/delete/:id', (req, res)=>{
     })    
 
 })
+//Borrar Salidas
+router.get('/deleteSalidas/:id', (req, res)=>{
+    const id = req.params.id;
+    pool.query('DELETE FROM salidas_act WHERE id=?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.redirect('/salidas');
+        }
+        
+    })    
+
+})
+
 
 //Stock Actual
 router.get('/stock', (req, res)=>{
