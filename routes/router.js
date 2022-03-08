@@ -144,6 +144,24 @@ router.get('/stock', (req, res)=>{
           
       })       
   });
+
+  //Restaurar
+  router.get('/Restaurar', (req, res)=>{
+    
+         
+    pool.query('SELECT * FROM entradas_act', (error, results)=>{
+        
+          if(error){
+              throw error;
+          }else{
+               res.render('stock', {results:results});
+               
+            
+          } 
+          
+      })       
+  });
+
 //Salidas
 router.get('/salidas', (req, res)=>{
     
