@@ -20,7 +20,7 @@ exports.save = (req, res)=>{
         console.log(error);
     }else{
          
-        res.redirect('/');
+        res.redirect('/stock');
     } 
     pool.query()   
     }) 
