@@ -26,6 +26,11 @@ router.get('/create', (req, res)=>{
     res.render('create');
 })
 
+//Render Opciones
+router.get('/opciones', (req, res)=>{
+    res.render('opciones');
+})
+
  
 
 //RUTA PARA EDITAR REGISTROS
