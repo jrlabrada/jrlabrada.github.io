@@ -20,6 +20,10 @@ router.get('/', authController.isAuthenticated, (req, res)=>{
     })   
 })
 
+
+
+
+
 //Control de Stock
 //RUTA PARA CREAR ENTRADAS
 router.get('/create', (req, res)=>{
@@ -27,8 +31,8 @@ router.get('/create', (req, res)=>{
 })
 
 //Render Opciones
-router.get('/opciones', (req, res)=>{
-    res.render('opciones');
+router.get('opciones',(req, res)=>{
+    res.render('opciones')
 })
 
  
