@@ -138,10 +138,9 @@
                     <div class="col-md-4">
                       <label for="producto" class="form-label">Producto</label>
                       <select name="producto" id="producto" class="form-select" style="width: 250px;">
+                        <option selected>Choose...</option>
                         <option <%= valor.producto=='tacos cabeza rape' ? "selected" : '' %> value="Tacos Cabeza Rape">Tacos Cabeza Rape</option>
                         <option <%= valor.producto=='cabeza rape fresco' ? "selected" : '' %> value="Cabeza Rape Fresco">Cabeza Rape Fresco</option>
-                        <option selected>Choose...</option>
-                         
                         <option <%= valor.producto=='rabas de poton' ? "selected" : '' %> value="Rabas de Poton(PATATAS)">Rabas de Poton(PATATAS)</option>
                         <option <%= valor.producto=='rejos poton IQF (500-1000)' ? "selected" : '' %> value="Rejos Poton IQF (500-1000)">Rejos Poton IQF (500-1000)</option>
                         <option <%= valor.producto=='rejos poton IQF (1000-2000)' ? "selected" : '' %> value="Rejos Poton IQF (1000-2000)">Rejos Poton IQF (1000-2000)</option>
@@ -153,7 +152,7 @@
                         <option <%= valor.producto=='filete de lirio (40-60)' ? "selected" : '' %> value="Filete De Lirio (40-60)">Filete De Lirio (40-60)</option>
                         <option <%= valor.producto=='filete de merluza (15-252)' ? "selected" : '' %> value="Filete de Merluza (15-252)">Filete de Merluza (15-252)</option>
                          
-                        <option selected>Filete de Lirio</option>
+                        
                         </select>
                     </div>
                     <div class="col-md-4">
