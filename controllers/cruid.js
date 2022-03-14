@@ -1,3 +1,4 @@
+const { join } = require('path');
 const pool = require ('../databases/db')
 
 exports.save = (req, res)=>{
@@ -72,25 +73,34 @@ exports.despacho = (req, res)=>{
     var comparar
     var cadena
     var cadenaJson
-    var KxCajasActualizar
-    pool.query('SELECT cajas FROM entradas_act WHERE id=?', [id], (err, rows)=>{
-       
+    var kilosTotalesAct
+    
+
+     
+    
+  pool.query('SELECT cajas FROM entradas_act WHERE id=?', [id], (err, rows)=>{
+   
 
            
              cadena = JSON.stringify(rows)
             cadenaJson = JSON.parse(cadena)
              comparar = cadenaJson[0].cajas
 
-              refe = comparar - Ccajas
+            
              
-              console.log(comprar)
-              console.log(refe)
-              KxCajasActualizar = Ktotales/refe
+
+
+              refe = comparar - Ccajas
+              kilosTotalesAct = refe * kxCajas
               
               
-      if (refe > 0 ) {
-        
-        pool.query('UPDATE entradas_act SET ? WHERE id = ?', [{cajas:refe, kilos_cajas:KxCajasActualizar, kilos_totales:Ktotales}, id], (error, results)=>{
+             
+              
+            
+
+              
+ if (refe > 0 ) {
+            pool.query('UPDATE entradas_act SET ? WHERE id = ?', [{cajas:refe, kilos_cajas:kxCajas, kilos_totales:kilosTotalesAct}, id], (error, results)=>{
             if(error){
                 throw error;
             }  
@@ -125,10 +135,10 @@ exports.despacho = (req, res)=>{
          } 
      } ) 
    } 
-  
     
     
-})
+    
+}) 
 }
 
 
