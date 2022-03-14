@@ -83,6 +83,8 @@ exports.despacho = (req, res)=>{
 
               refe = comparar - Ccajas
              
+              console.log(comprar)
+              console.log(refe)
               
               
       if (refe > 0 ) {
@@ -121,7 +123,7 @@ exports.despacho = (req, res)=>{
             })    
          } 
      } ) 
-   }
+   } 
   
     
     
