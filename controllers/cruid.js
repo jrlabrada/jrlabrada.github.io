@@ -85,10 +85,11 @@ exports.despacho = (req, res)=>{
              
               console.log(comprar)
               console.log(refe)
+              KxCajasActualizar = Ktotales/refe
               
               
       if (refe > 0 ) {
-        KxCajasActualizar = Ktotales/refe
+        
         pool.query('UPDATE entradas_act SET ? WHERE id = ?', [{cajas:refe, kilos_cajas:KxCajasActualizar, kilos_totales:Ktotales}, id], (error, results)=>{
             if(error){
                 throw error;
