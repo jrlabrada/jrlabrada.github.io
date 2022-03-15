@@ -23,6 +23,39 @@ router.get('/', authController.isAuthenticated, (req, res)=>{
 
 
 
+//Usuarios Mostrar
+
+router.get('/usuarios', (req, res)=>{
+    
+         
+    pool.query('SELECT * FROM users', (error, results)=>{
+        
+          if(error){
+              throw error;
+          }else{
+               res.render('usuarios', {results:results});
+               
+            
+          } 
+          
+      })       
+  });
+
+  //Editar Usuarios
+router.get('/deleteUsuario/:id', (req, res)=>{
+    const id = req.params.id;
+    pool.query('DELETE FROM users WHERE id=?', [id], (error, results)=>{
+        if(error){
+            throw error;
+        }else{
+            res.redirect('/usuarios');
+        }
+        
+    })
+
+})
+
+
 
 //Control de Stock
 //RUTA PARA CREAR ENTRADAS
@@ -30,10 +63,10 @@ router.get('/create', (req, res)=>{
     res.render('create');
 })
 
-//Render Opciones
-router.get('opciones',(req, res)=>{
-    res.render('opciones')
+router.get('/usuarios', (req, res)=>{
+    res.render('usuarios');
 })
+
 
  
 

@@ -30,8 +30,12 @@ app.get('/', (req,res)=>{
     res.render('login')
 })
 
+
+
 app.get('/api/entradas_act', (req, res)=>{
     pool.query('SELECT * FROM entradas_act', (error, filas)=>{
+
+
         
         if(error){
             throw error;
