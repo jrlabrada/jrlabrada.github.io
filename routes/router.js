@@ -55,12 +55,32 @@ router.get('/deleteUsuario/:id', (req, res)=>{
 
 })
 
+ 
 
+ 
 
 //Control de Stock
 //RUTA PARA CREAR ENTRADAS
 router.get('/create', (req, res)=>{
     res.render('create');
+})
+
+//Filtrar
+router.get('/filtrar', (req, res)=>{
+    const producto = req.params.producto;
+    console.log(producto)
+   pool.query('SELECT * FROM `entradas_act` WHERE almacen = ?',[producto], (error, results)=>{
+       
+       if(error){
+           throw error;
+       }else{
+            res.render('stock', {results:results});
+            
+         
+       } 
+       
+   })     
+
 })
 
 router.get('/usuarios', (req, res)=>{
