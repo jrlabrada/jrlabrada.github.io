@@ -56,11 +56,12 @@ exports.modificar = (req, res)=>{
 
 }
 //filtrar producto
-exports.filtrar =(req, res) =>{
-    const producto = req.body.producto
-    console.log(producto)
-}
-
+/*  exports.filtrar =(req, res) =>{
+        const productoFiltrar = req.body.producto;
+        console.log(productoFiltrar)
+    }
+ 
+  */
 
 exports.despacho = (req, res)=>{
     const id = req.body.id;

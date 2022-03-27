@@ -33,16 +33,21 @@ app.get('/', (req,res)=>{
 
 
 app.get('/api/entradas_act', (req, res)=>{
-    pool.query('SELECT * FROM entradas_act', (error, filas)=>{
+const producto = 'Filete De Lirio'
 
+    pool.query('SELECT * FROM entradas_act WHERE producto=?',[producto], (error, filas)=>{
 
-        
+        console.log(filas)
         if(error){
             throw error;
         }else{
+         
+            
             res.send(filas) 
              
-          
+           
+
+            
         } 
          
     })       
