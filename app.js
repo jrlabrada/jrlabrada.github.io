@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/api/entradas_act', (req, res) => {
-    const producto = 'Filete De Lirio'
+    
 
     pool.query('SELECT entradas_act.producto, 	sum(entradas_act.kilos_totales) as kilos_totales FROM 	entradas_act GROUP BY 	entradas_act.producto', (error, filas) => {
 
