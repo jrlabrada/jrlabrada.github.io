@@ -68,8 +68,8 @@ router.get('/create', (req, res) => {
 
 //Filtrar
 router.get('/filtrar', (req, res) => {
-    const product = req.body.producto
-    pool.query('SELECT * FROM `entradas_act` WHERE producto = ?', [product], (error, results) => {
+    const product = req.query.producto;
+    pool.query("SELECT * FROM `entradas_act` WHERE producto = ?",[product] ,(error, results) => {
         if (error) {
             throw error;
         } else {
