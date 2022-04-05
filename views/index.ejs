@@ -178,16 +178,16 @@
   
   // Add data
    let url ='http://jrdomain.info/api/entradas_act'; 
- /*  let url ='http://localhost:3000/api/entradas_act'; */
+  // let url ='http://localhost:3000/api/entradas_act'; 
 fetch(url)
     .then(Response => Response.json())
     .then(datos => mostrar(datos))
     .catch(e => console.log(e))
 
       const mostrar = (entradas_act) => {
-      /* entradas_act.forEach(element => {
+      entradas_act.forEach(element => {
           chart.data.push(element.producto)
-        }); */
+        }); 
         chart.data = entradas_act
         console.log(chart.data)
     }
